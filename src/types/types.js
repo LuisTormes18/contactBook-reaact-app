@@ -2,13 +2,16 @@ export const types = {
     // auth
     login: "[Auth] Login",
     logout: "[Auth] Logout",
+    loginError: "[Auth] Login Error",
+    isValidToken:'[Auth] valid token',
 
     // contact
     loadContacts: "[Contact] Load All contacts",
-    newContact: "[Contact] New contact add",
+    newContactAdd: "[Contact] New contact add",
     deleteContact: "[Contact] Delete contact",
     selectContact: "[Contact] Select contact",
-    updateContact: "[Contact] Update Contact",
+    loadContactForEdit: "[Contact] Load contact for edit",
+    updateContact: "[Contact] Update contact",
 
     // ui
     showMsg: "",
