@@ -7,6 +7,7 @@ import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
 import authContext from "./../context/auth/authContext";
 import { startExistValidToken } from "../actions/auth";
+import Loading from "../components/ui/Loading";
 
 function AppRouter() {
     const [authState, dispatch] = useContext(authContext);
@@ -14,14 +15,15 @@ function AppRouter() {
 
     const [checking, setChecking] = useState(true);
 
-    useEffect(async () => {
-        await startExistValidToken(dispatch);
-        setChecking(false);
-
-    }, []);
+    useEffect(() => {
+        (async () => {
+            await startExistValidToken(dispatch);
+            setChecking(false);
+        })();
+    }, [dispatch]);
 
     if (checking) {
-        return <h1>Loading...</h1>;
+        return <Loading />;
     }
 
     return (

@@ -36,7 +36,7 @@ function Sidebar() {
 
     return (
         <div className="home__sidebar">
-            <form>
+            <form >
                 <div class="form-group">
                     <label>Nombre Completo</label>
                     <input
@@ -83,7 +83,7 @@ function Sidebar() {
                 {!bookState.active ? (
                     <button onClick={handleCliackAdd}>Add New Contact</button>
                 ) : (
-                    <button onClick={handleClickSaveEdit}>Save Edit</button>
+                    <button className='btn btn-lg btn-outline-primary'onClick={handleClickSaveEdit}>Save Edit</button>
                 )}
             </form>
         </div>

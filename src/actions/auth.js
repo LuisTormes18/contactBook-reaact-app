@@ -15,7 +15,7 @@ export const startLogin = async (userCred, dispatch) => {
 
         dispatch(login(user, token));
     } else {
-        dispatch(loginError(result.msg));
+        dispatch(setError(result.msg));
         console.log("error de respuesta :", result.msg);
     }
 };
@@ -33,7 +33,7 @@ export const startRegister = async (userCred, dispatch) => {
 
         dispatch(login(user, token));
     } else {
-        dispatch(loginError(result.msg));
+        dispatch(setError(result.msg));
         console.log("error de respuesta :", result.msg);
     }
 };
@@ -58,7 +58,7 @@ const login = (user, token) => {
         },
     };
 };
-const loginError = (msg) => {
+export const setError = (msg) => {
     return {
         type: types.loginError,
         payload: msg,

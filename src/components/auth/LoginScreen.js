@@ -26,24 +26,39 @@ function LoginScreen() {
 
     return (
         <div className="form-container">
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="email"
-                    name="email"
-                    onChange={handleInputChange}
-                    value={email}
-                />
-                <input
-                    type="password"
-                    name="password"
-                    onChange={handleInputChange}
-                    value={password}
-                />
-                <input type="submit" value="Login" />
+            <form className='form' onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        name="email"
+                        className="form-control"
+                        onChange={handleInputChange}
+                        value={email}
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label>Password</label>
+                    <input
+                        type="password"
+                        name="password"
+                        className="form-control"
+                        onChange={handleInputChange}
+                        value={password}
+                    />
+                </div>
+                <div className="form-group">
+                    <input
+                        className="btn btn-primary"
+                        type="submit"
+                        value="Login"
+                    />
+                </div>
 
                 {authState.msgError && <h2>{authState.msgError}</h2>}
 
-                <Link to="/auth/register">Crear una Cuenta</Link>
+                <Link className='link' to="/auth/register">Crear una Cuenta</Link>
             </form>
         </div>
     );

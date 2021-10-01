@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import useForm from "./../../hooks/useForm";
 import authContext from "./../../context/auth/authContext";
-import { startRegister } from "./../../actions/auth";
+import { setError, startRegister } from "./../../actions/auth";
 
 function RegisterScreen() {
     const [authState, dispatch] = useContext(authContext);
@@ -19,44 +19,86 @@ function RegisterScreen() {
 
     const { name, email, password, password2 } = stateValues;
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
-
-        startRegister({ name, email, password }, dispatch);
+        if (isFormValid()) {
+            await startRegister({ name, email, password }, dispatch);
+        }
     }
-    function isFormValid() {}
+    const isFormValid = () => {
+        if (name.trim().length === 0) {
+            dispatch(setError("Name is required!"));
+            return false;
+        } else if (!validator.isEmail(email)) {
+            dispatch(setError("Email Invalid"));
+            return false;
+        } else if (password !== password2) {
+            dispatch(setError("passowrd no coinciden"));
+
+            return false;
+        } else if (password.length <= 5) {
+            dispatch(setError("El minimo debe ser 5 caracteres"));
+            return false;
+        }
+    };
     return (
         <div className="form-container">
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="name"
-                    onChange={handleInputChange}
-                    value={name}
-                />
-                <input
-                    type="email"
-                    name="email"
-                    onChange={handleInputChange}
-                    value={email}
-                />
-                <input
-                    type="password"
-                    name="password"
-                    onChange={handleInputChange}
-                    value={password}
-                />
-                <input
-                    type="password"
-                    name="password2"
-                    onChange={handleInputChange}
-                    value={password2}
-                />
-                <input type="submit" value="Register" />
+            <form className="form" onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label>Name</label>
+                    <input
+                        type="text"
+                        name="name"
+                        className="form-control"
+                        onChange={handleInputChange}
+                        value={name}
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        name="email"
+                        className="form-control"
+                        onChange={handleInputChange}
+                        value={email}
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label>Password</label>
+                    <input
+                        type="password"
+                        name="password"
+                        className="form-control"
+                        onChange={handleInputChange}
+                        value={password}
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label>Confirm Password</label>
+                    <input
+                        type="password"
+                        name="password2"
+                        className="form-control"
+                        onChange={handleInputChange}
+                        value={password2}
+                    />
+                </div>
+                <div className="form-group">
+                    <input
+                        className="btn btn-primary"
+                        type="submit"
+                        value="Register"
+                    />
+                </div>
 
                 {authState.msgError && <h2>{authState.msgError}</h2>}
-                
-                <Link to="/auth/login">ya tengo una cuenta!</Link>
+
+                <Link className="link" to="/auth/login">
+                    ya tengo una cuenta!
+                </Link>
             </form>
         </div>
     );

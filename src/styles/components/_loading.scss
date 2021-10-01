@@ -1,0 +1,14 @@
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: $primary;
+    color:white;
+
+    height:100vh;
+
+    span{
+        font-size: 35px;
+    }
+}

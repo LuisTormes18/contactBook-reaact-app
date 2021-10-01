@@ -14,12 +14,13 @@ function HomeScreen() {
     const { data } = bookState;
 
     useEffect(() => {
-        startLoadAllContacts(dispatch);
-    }, []);
+        (async () => {
+            await startLoadAllContacts(dispatch);
+        })();
+    }, [dispatch]);
 
     function handleEdit(record) {
-
-        console.log(record)
+        console.log(record);
         dispatch(loadContactForEdit(record));
     }
     function handleDelete(id) {
@@ -39,7 +40,7 @@ function HomeScreen() {
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Direction</th>
-                                <th>Actions</th>
+                                <th className="actions">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,7 +53,7 @@ function HomeScreen() {
                                         <td>{record.email}</td>
                                         <td>{record.phone}</td>
                                         <td>{record.direction}</td>
-                                        <td>
+                                        <td className="actions">
                                             <button
                                                 onClick={() => {
                                                     handleEdit(record);

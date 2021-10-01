@@ -14,8 +14,10 @@ function Navbar() {
                 <span>ContactBook</span>
             </div>
             <div className="">
-                <span>{authState.user.name}</span>
-                <button onClick={handleLogout}>Logout</button>
+                <span>{authState?.user?.name}</span>
+                <button className="btn btn-dark" onClick={handleLogout}>
+                    Logout
+                </button>
             </div>
         </div>
     );
