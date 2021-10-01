@@ -8,7 +8,7 @@ function AuthRouter() {
         <div className="auth">
             <div className='text'> 
                 <h1>Contact Book</h1>
-                <p>lorem register for add new contact</p>
+                <p>Login or register to save your contacts.</p>
             </div>
             <div className='div'>
                 <Switch>
