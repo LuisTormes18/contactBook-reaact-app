@@ -1,4 +1,6 @@
 import React, { useContext, useEffect } from "react";
+import Swal from 'sweetalert2';
+
 import { startAddNewContact, startUpdateContact } from "../../actions/book";
 import bookContext from "../../context/book/bookContext";
 import useForm from "./../../hooks/useForm";
@@ -21,23 +23,32 @@ function Sidebar() {
 
     const { fullname, email, phone, direction } = stateValues;
 
-    function handleCliackAdd(e) {
+    async function handleCliackAdd(e) {
         e.preventDefault();
-        startAddNewContact({ fullname, email, phone, direction }, dispatch);
+
+        Swal.showLoading()
+        await startAddNewContact({ fullname, email, phone, direction }, dispatch);
+        reset();
+        Swal.fire('Add Success!','','success');
+
     }
-    function handleClickSaveEdit(e) {
+    async function handleClickSaveEdit(e) {
         e.preventDefault();
-        startUpdateContact(
+        Swal.showLoading()
+
+       await  startUpdateContact(
             { fullname, email, phone, direction, id: bookState.active.id },
             dispatch
         );
+        Swal.fire('Update Success!','','success');
+
         reset();
     }
 
     return (
         <div className="home__sidebar">
             <form >
-                <div class="form-group">
+                <div className="form-group">
                     <label>Nombre Completo</label>
                     <input
                         type="text"
@@ -48,7 +59,7 @@ function Sidebar() {
                     />
                 </div>
 
-                <div class="form-group">
+                <div className="form-group">
                     <label>Email</label>
                     <input
                         type="text"
@@ -59,7 +70,7 @@ function Sidebar() {
                     />
                 </div>
 
-                <div class="form-group">
+                <div className="form-group">
                     <label>Telefono</label>
                     <input
                         type="text"
@@ -70,20 +81,20 @@ function Sidebar() {
                     />
                 </div>
 
-                <div class="form-group">
+                <div className="form-group">
                     <label>Direccion</label>
                     <input
                         type="text"
-                        name="direccion"
+                        name="direction"
                         className="form-control"
                         value={direction}
                         onChange={handleInputChange}
                     />
                 </div>
                 {!bookState.active ? (
-                    <button onClick={handleCliackAdd}>Add New Contact</button>
+                    <button  className='btn btn-primary' onClick={handleCliackAdd}>Add New Contact</button>
                 ) : (
-                    <button className='btn btn-lg btn-outline-primary'onClick={handleClickSaveEdit}>Save Edit</button>
+                    <button className='btn btn-primary'onClick={handleClickSaveEdit}>Save Edit</button>
                 )}
             </form>
         </div>

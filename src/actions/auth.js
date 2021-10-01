@@ -2,7 +2,6 @@ import { types } from "./../types/types";
 import { fetchWithOutToken, fetchWithToken } from "./../helpers/fetch";
 
 export const startLogin = async (userCred, dispatch) => {
-    console.log("start login");
 
     const resp = await fetchWithOutToken("/auth", userCred, "POST");
     const result = await resp.json();
@@ -25,13 +24,14 @@ export const startRegister = async (userCred, dispatch) => {
     const resp = await fetchWithOutToken("/auth/add", userCred, "POST");
     const result = await resp.json();
 
+
     if (result.ok) {
         const { user, token } = result;
 
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
 
-        dispatch(login(user, token));
+        dispatch(login(userCred, token));
     } else {
         dispatch(setError(result.msg));
         console.log("error de respuesta :", result.msg);
@@ -72,7 +72,6 @@ export const startExistValidToken = async (dispatch) => {
         const resp = await fetchWithToken("/auth");
         const result = await resp.json();
 
-        console.log(result)
 
         if (result.ok) {
             dispatch(isLogged());

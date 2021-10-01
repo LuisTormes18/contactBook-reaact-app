@@ -32,6 +32,23 @@
 
     table {
         width: 100%;
+
+        tr {
+            padding: 20px 0px;
+            th,
+            td {
+                width: 100% / 5;
+                padding: 0 15px;
+            }
+
+            .actions-btn {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            button {
+                margin: 0 3px;
+            }
+        }
     }
 }
 @media (max-width: 500px) {

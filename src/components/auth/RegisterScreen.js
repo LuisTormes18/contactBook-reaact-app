@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import validator from "validator";
 
 import useForm from "./../../hooks/useForm";
 import authContext from "./../../context/auth/authContext";
@@ -40,6 +41,7 @@ function RegisterScreen() {
             dispatch(setError("El minimo debe ser 5 caracteres"));
             return false;
         }
+        return true;
     };
     return (
         <div className="form-container">
@@ -94,7 +96,11 @@ function RegisterScreen() {
                     />
                 </div>
 
-                {authState.msgError && <h2>{authState.msgError}</h2>}
+                {authState.msgError && (
+                    <div className="alert alert-danger" role="alert">
+                        {authState.msgError}
+                    </div>
+                )}
 
                 <Link className="link" to="/auth/login">
                     ya tengo una cuenta!

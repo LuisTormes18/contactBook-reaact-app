@@ -5,8 +5,6 @@ export const startLoadAllContacts = async (dispatch) => {
     const resp = await fetchWithToken("/contacts/");
     const result = await resp.json();
 
-    console.log(result);
-
     dispatch(loadData(result.listContacts));
 };
 
@@ -35,8 +33,6 @@ export const startDeleteContact = async (id, dispatch) => {
     const resp = await fetchWithToken(`/contacts/delete/${id}`, null, "DELETE");
     const result = await resp.json();
 
-    console.log(result);
-
     dispatch(contactDelete(id));
 };
 export const contactDelete = (id) => {
@@ -60,8 +56,6 @@ export const startUpdateContact = async (newData, dispatch) => {
     );
     const result = await resp.json();
 
-    console.log(result);
-
     dispatch(contactUpdate(newData));
 };
 
@@ -72,11 +66,4 @@ export const contactUpdate = (newData) => {
     };
 };
 
-/*
-router.put(`/update/:id`, [validarToken], update);
 
-//Route para Eliminar un  contacto
-router.delete(`/delete/:id`, [validarToken], del);
-
-
-*/

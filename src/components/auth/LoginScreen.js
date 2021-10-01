@@ -26,7 +26,7 @@ function LoginScreen() {
 
     return (
         <div className="form-container">
-            <form className='form' onSubmit={handleSubmit}>
+            <form className="form" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label>Email</label>
                     <input
@@ -56,9 +56,15 @@ function LoginScreen() {
                     />
                 </div>
 
-                {authState.msgError && <h2>{authState.msgError}</h2>}
+                {authState.msgError && (
+                    <div className="alert alert-danger" role="alert">
+                        {authState.msgError}
+                    </div>
+                )}
 
-                <Link className='link' to="/auth/register">Crear una Cuenta</Link>
+                <Link className="link" to="/auth/register">
+                    Crear una Cuenta
+                </Link>
             </form>
         </div>
     );
