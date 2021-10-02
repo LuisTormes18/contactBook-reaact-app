@@ -52,7 +52,11 @@ function HomeScreen() {
                     ) : (
                         <div>
                             {data.length <= 0 ? (
-                                <p>Aui apareceran tus contactos.</p>
+                                <div className='home__text'>
+									<h2>
+										When you add a contact, it will appear here.
+									</h2>
+								</div>	
                             ) : (
                                 <table>
                                     <thead>
