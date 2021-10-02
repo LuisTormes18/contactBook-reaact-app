@@ -1,27 +1,31 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import useForm from "./../../hooks/useForm";
 import authContext from "./../../context/auth/authContext";
-import { startLogin } from "./../../actions/auth";
+import { setErrorToNull, startLogin } from "./../../actions/auth";
 
 function LoginScreen() {
     const [authState, dispatch] = useContext(authContext);
-
-    console.log(authState);
 
     const [stateValues, handleInputChange] = useForm({
         email: "",
         password: "",
     });
-
     const { email, password } = stateValues;
 
-    function handleSubmit(e) {
+    useEffect(() => {
+        return async () => {
+            if (authState.msgEror !== null) {
+                await dispatch(setErrorToNull());
+            }
+        };
+    }, []);
+
+    async function handleSubmit(e) {
         e.preventDefault();
 
-        startLogin({ email, password }, dispatch);
-        // dispatch(startLogin({email,password},dispatch))
+        await startLogin({ email, password }, dispatch);
     }
 
     return (
@@ -50,6 +54,7 @@ function LoginScreen() {
                 </div>
                 <div className="form-group">
                     <input
+                        disabled={authState.btnDisabled}
                         className="btn btn-primary"
                         type="submit"
                         value="Login"
@@ -62,8 +67,12 @@ function LoginScreen() {
                     </div>
                 )}
 
-                <Link className="link" to="/auth/register">
-                    Crear una Cuenta
+                <Link
+                    disabled={authState.btnDisabled}
+                    className="link"
+                    to="/auth/register"
+                >
+                    Create a new account
                 </Link>
             </form>
         </div>

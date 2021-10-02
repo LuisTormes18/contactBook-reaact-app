@@ -4,6 +4,7 @@ export const types = {
     logout: "[Auth] Logout",
     loginError: "[Auth] Login Error",
     isValidToken:'[Auth] valid token',
+    isDisabledBtn:'[Auth] Disabled for request active',
 
     // contact
     loadContacts: "[Contact] Load All contacts",

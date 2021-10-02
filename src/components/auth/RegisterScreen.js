@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import validator from "validator";
 
 import useForm from "./../../hooks/useForm";
 import authContext from "./../../context/auth/authContext";
-import { setError, startRegister } from "./../../actions/auth";
+import { setErrorToNull, setError, startRegister } from "./../../actions/auth";
 
 function RegisterScreen() {
     const [authState, dispatch] = useContext(authContext);
@@ -28,21 +28,29 @@ function RegisterScreen() {
     }
     const isFormValid = () => {
         if (name.trim().length === 0) {
-            dispatch(setError("Name is required!"));
+            dispatch(setError("Name is required"));
             return false;
         } else if (!validator.isEmail(email)) {
             dispatch(setError("Email Invalid"));
             return false;
         } else if (password !== password2) {
-            dispatch(setError("passowrd no coinciden"));
+            dispatch(setError("Passwords do not match"));
 
             return false;
         } else if (password.length <= 5) {
-            dispatch(setError("El minimo debe ser 5 caracteres"));
+            dispatch(setError("the password must be at least 6 characters"));
             return false;
         }
         return true;
     };
+    useEffect(() => {
+        return async () => {
+            if (authState.msgEror !== null) {
+                await dispatch(setErrorToNull());
+            }
+        };
+    }, []);
+
     return (
         <div className="form-container">
             <form className="form" onSubmit={handleSubmit}>
@@ -91,6 +99,7 @@ function RegisterScreen() {
                 <div className="form-group">
                     <input
                         className="btn btn-primary"
+                        disabled={authState.btnDisabled}
                         type="submit"
                         value="Register"
                     />
@@ -101,10 +110,9 @@ function RegisterScreen() {
                         {authState.msgError}
                     </div>
                 )}
-
-                <Link className="link" to="/auth/login">
-                    ya tengo una cuenta!
-                </Link>
+                    <Link className="link" to="/auth/login">
+                        I already have an account!
+                    </Link>
             </form>
         </div>
     );

@@ -4,6 +4,7 @@ export const initialState = {
     user: localStorage.getItem("user") || null,
     isAuthenticated: false,
     msgError: null,
+    btnDisabled: false,
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -26,7 +27,16 @@ export const authReducer = (state = initialState, action) => {
                 msgError: action.payload,
             };
         case types.logout:
-            return initialState;
+            return {
+                ...initialState,
+                token: null,
+                user: null,
+            };
+        case types.isDisabledBtn:
+            return {
+                ...state,
+                btnDisabled: action.payload,
+            };
 
         default:
             return state;

@@ -50,49 +50,53 @@ function HomeScreen() {
                     {isLoad ? (
                         <span>Loading...</span>
                     ) : (
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Direction</th>
-                                    <th className="actions">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {data === [] ? (
-                                    <h2>Your Contact Apareceran Here.</h2>
-                                ) : (
-                                    data.map((record) => (
-                                        <tr key={record.id}>
-                                            <td>{record.fullname}</td>
-                                            <td>{record.email}</td>
-                                            <td>{record.phone}</td>
-                                            <td>{record.direction}</td>
-                                            <td className="actions actions-btn">
-                                                <button
-                                                    className="btn btn-outline-primary"
-                                                    onClick={() => {
-                                                        handleEdit(record);
-                                                    }}
-                                                >
-                                                    Edit
-                                                </button>
-                                                <button
-                                                    className="btn btn-outline-danger"
-                                                    onClick={() => {
-                                                        handleDelete(record.id);
-                                                    }}
-                                                >
-                                                    Delete
-                                                </button>
-                                            </td>
+                        <div>
+                            {data.length <= 0 ? (
+                                <p>Aui apareceran tus contactos.</p>
+                            ) : (
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Direction</th>
+                                            <th className="actions">Actions</th>
                                         </tr>
-                                    ))
-                                )}
-                            </tbody>
-                        </table>
+                                    </thead>
+                                    <tbody>
+                                        {data.map((record) => (
+                                            <tr key={record.id}>
+                                                <td>{record.fullname}</td>
+                                                <td>{record.email}</td>
+                                                <td>{record.phone}</td>
+                                                <td>{record.direction}</td>
+                                                <td className="actions actions-btn">
+                                                    <button
+                                                        className="btn btn-outline-primary"
+                                                        onClick={() => {
+                                                            handleEdit(record);
+                                                        }}
+                                                    >
+                                                        Edit
+                                                    </button>
+                                                    <button
+                                                        className="btn btn-outline-danger"
+                                                        onClick={() => {
+                                                            handleDelete(
+                                                                record.id
+                                                            );
+                                                        }}
+                                                    >
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            )}
+                        </div>
                     )}
                 </div>
             </div>
