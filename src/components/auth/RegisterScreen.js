@@ -9,8 +9,6 @@ import { setErrorToNull, setError, startRegister } from "./../../actions/auth";
 function RegisterScreen() {
     const [authState, dispatch] = useContext(authContext);
 
-    console.log(authState);
-
     const [stateValues, handleInputChange] = useForm({
         name: "",
         email: "",

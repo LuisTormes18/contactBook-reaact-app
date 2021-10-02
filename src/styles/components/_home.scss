@@ -52,8 +52,18 @@
     }
 }
 @media (max-width: 500px) {
+
+    .home__container{
+    //flex-direction:column;
+    background-color: #f1f1f1;
+
+    }
     .home__sidebar {
-        display: none;
+        display:none;
+       // position:absolute;
+        //width:100%;
+
+        //height:auto;
     }
     .actions {
         display: none;

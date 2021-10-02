@@ -9,6 +9,7 @@ import {
 import bookContext from "./../../context/book/bookContext";
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
+import ButtonMovile from "./ButtonMovile";
 
 function HomeScreen() {
     const [bookState, dispatch] = useContext(bookContext);
@@ -104,8 +105,13 @@ function HomeScreen() {
                     )}
                 </div>
             </div>
+
+
+
         </>
     );
 }
 
 export default HomeScreen;
+
+            // <ButtonMovile />

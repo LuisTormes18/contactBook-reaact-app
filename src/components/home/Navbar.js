@@ -11,7 +11,7 @@ function Navbar() {
     return (
         <div className="home__navbar">
             <div className="logo">
-                <span>{authState.user.name}</span>
+                <span>{authState.user?.name}</span>
             </div>
             <div className="">
                 <button className="btn btn-dark" onClick={handleLogout}>

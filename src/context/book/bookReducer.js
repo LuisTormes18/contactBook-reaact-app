@@ -5,7 +5,6 @@ export const initialState = {
 };
 
 export const bookReducer = (state = initialState, action) => {
-    console.log(action);
     switch (action.type) {
         case types.loadContacts:
             return {

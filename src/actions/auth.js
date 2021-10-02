@@ -73,14 +73,17 @@ export const setErrorToNull = () => {
 };
 
 export const startExistValidToken = async (dispatch) => {
-    const token = localStorage.getItem("token") || null;
+    const ExistToken = localStorage.getItem("token") || null;
 
-    if (token) {
+    if (ExistToken) {
         const resp = await fetchWithToken("/auth");
         const result = await resp.json();
 
         if (result.ok) {
-            dispatch(isLogged());
+
+            const { token } = result;
+
+            dispatch(isValidLogged(token));
         } else {
             localStorage.removeItem("token");
             localStorage.removeItem("user");
@@ -88,9 +91,10 @@ export const startExistValidToken = async (dispatch) => {
     }
 };
 
-const isLogged = () => {
+const isValidLogged = (renewToken) => {
     return {
         type: types.isValidToken,
+        payload:renewToken,
     };
 };
 

@@ -1,7 +1,7 @@
 import { types } from "./../../types/types";
 export const initialState = {
     token: localStorage.getItem("token") || null,
-    user: localStorage.getItem("user") || null,
+    user: JSON.parse(localStorage.getItem("user")) || null,
     isAuthenticated: false,
     msgError: null,
     btnDisabled: false,
@@ -12,6 +12,7 @@ export const authReducer = (state = initialState, action) => {
         case types.isValidToken:
             return {
                 ...state,
+                token:action.payload,
                 isAuthenticated: true,
             };
         case types.login:
