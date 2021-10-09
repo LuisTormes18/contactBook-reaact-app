@@ -9,10 +9,10 @@
     padding: 0 10%;
 
     color: white;
-    .logo{
-    &::first-letter {
-    text-transform: uppercase;
-}
+    .logo {
+        &::first-letter {
+            text-transform: uppercase;
+        }
     }
 }
 .home__sidebar {
@@ -52,67 +52,66 @@
     }
 }
 @media (max-width: 750px) {
-    .home__container{
-    flex-direction:column;
-    table, thead, tbody, th, td, tr { 
-        display: block; 
-    }
-    
-    thead tr { 
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
-    }
-    
-    tr { border: 1px solid #ccc; }
-    
-    td { 
-        border: none;
-        border-bottom: 1px solid #eee; 
-        position: relative;
-        padding-left: 50%; 
-    }
-    
-    td:before { 
-        position: absolute;
-        top: 6px;
-        left: 6px;
-        width: 45%; 
-        padding-right: 10px; 
-        white-space: nowrap;
-    }
-   
+    .home__container {
+        flex-direction: column;
+        table,
+        thead,
+        tbody,
+        th,
+        td,
+        tr {
+            display: block;
+        }
+
+        thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+        tr {
+            border: 1px solid #ccc;
+        }
+
+        td {
+            border: none;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 50%;
+        }
+
+        td:before {
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+        }
     }
     .home__sidebar {
-        width:100%;
+        width: 100%;
         padding: 0;
 
-      height:auto;
-form{
+        height: auto;
+        form {
+            display: flex;
 
-    display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 20px 5%;
+            gap: 10px;
 
-    justify-content:center;
-    align-items:center;
-    flex-wrap:wrap;
-    padding:20px 5%;
-    gap:10px;
-
-    div{
-    width:250px;
+            div {
+                width: 250px;
+            }
+        }
     }
 }
 
-    }
-    
-    .actions {
-        //display: none;
-    }
-
-}
-
-.home__text{
- text-align:center;
- padding-top:40px;
- color:$dark-grey;
+.home__text {
+    text-align: center;
+    padding-top: 40px;
+    color: $dark-grey;
 }
