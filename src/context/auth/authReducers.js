@@ -3,7 +3,8 @@ export const initialState = {
     token: localStorage.getItem("token") || null,
     user: JSON.parse(localStorage.getItem("user")) || null,
     isAuthenticated: false,
-    msgError: null,
+    loginError: null,
+    registerError:null,
     btnDisabled: false,
 };
 
@@ -17,15 +18,20 @@ export const authReducer = (state = initialState, action) => {
             };
         case types.login:
             return {
+                ...initialState,
                 token: action.payload.token,
                 user: action.payload.user,
-                msgError: null,
                 isAuthenticated: true,
             };
         case types.loginError:
             return {
                 ...state,
-                msgError: action.payload,
+                loginError: action.payload,
+            };
+        case types.registerError:
+            return {
+                ...state,
+                registerError: action.payload,
             };
         case types.logout:
             return {

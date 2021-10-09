@@ -14,7 +14,8 @@ export const startLogin = async (userCred, dispatch) => {
 
         dispatch(login(user, token));
     } else {
-        dispatch(setError(result.msg));
+        console.log(result.msg);
+        dispatch(setErrorLogin(result.msg));
         dispatch(disabledBtn(false));
     }
 };
@@ -34,7 +35,7 @@ export const startRegister = async (userCred, dispatch) => {
 
         dispatch(login(userCred, token));
     } else {
-        dispatch(setError(result.msg));
+        dispatch(setErrorRegister(result.msg));
         dispatch(disabledBtn(false));
         
     }
@@ -59,16 +60,16 @@ const login = (user, token) => {
         },
     };
 };
-export const setError = (msg) => {
+export const setErrorLogin = (msg) => {
     return {
         type: types.loginError,
         payload: msg,
     };
 };
-export const setErrorToNull = () => {
+export const setErrorRegister = (msg) => {
     return {
-        type: types.loginError,
-        payload: null,
+        type: types.registerError,
+        payload: msg,
     };
 };
 

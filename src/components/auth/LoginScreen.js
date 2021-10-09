@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import useForm from "./../../hooks/useForm";
 import authContext from "./../../context/auth/authContext";
-import { setErrorToNull, startLogin } from "./../../actions/auth";
+import { setErrorLogin, startLogin } from "./../../actions/auth";
 
 function LoginScreen() {
     const [authState, dispatch] = useContext(authContext);
@@ -15,12 +15,12 @@ function LoginScreen() {
     const { email, password } = stateValues;
 
     useEffect(() => {
-        return async () => {
-            if (authState.msgEror !== null) {
-                await dispatch(setErrorToNull());
+        return () => {
+            if (authState.loginEror !== null) {
+                dispatch(setErrorLogin(null));
             }
         };
-    }, []);
+    }, [authState.loginEror,dispatch]);
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -61,9 +61,9 @@ function LoginScreen() {
                     />
                 </div>
 
-                {authState.msgError && (
+                {authState.loginError && (
                     <div className="alert alert-danger" role="alert">
-                        {authState.msgError}
+                        {authState.loginError}
                     </div>
                 )}
 

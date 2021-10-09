@@ -27,7 +27,7 @@
     display: flex;
 }
 .home__table {
-    padding: 40px;
+    padding: 40px 10px;
     width: 100%;
 
     table {
@@ -40,34 +40,70 @@
                 width: 100% / 5;
                 padding: 0 15px;
             }
-
-            .actions-btn {
-                display: flex;
-                flex-wrap: wrap;
-            }
             button {
                 margin: 0 3px;
             }
         }
     }
 }
-@media (max-width: 500px) {
-
+@media (max-width: 750px) {
     .home__container{
-    //flex-direction:column;
-    background-color: #f1f1f1;
-
+    flex-direction:column;
+    table, thead, tbody, th, td, tr { 
+        display: block; 
+    }
+    
+    thead tr { 
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    
+    tr { border: 1px solid #ccc; }
+    
+    td { 
+        border: none;
+        border-bottom: 1px solid #eee; 
+        position: relative;
+        padding-left: 50%; 
+    }
+    
+    td:before { 
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 45%; 
+        padding-right: 10px; 
+        white-space: nowrap;
+    }
+   
     }
     .home__sidebar {
-        display:none;
-       // position:absolute;
-        //width:100%;
+        width:100%;
+        padding: 0;
 
-        //height:auto;
+      height:auto;
+form{
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    padding:20px 5%;
+    gap:10px;
+
+    div{
+    width:250px;
     }
+}
+
+    }
+    
     .actions {
-        display: none;
+        //display: none;
     }
+
 }
 
 .home__text{

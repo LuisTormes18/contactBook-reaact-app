@@ -3,6 +3,7 @@ export const types = {
     login: "[Auth] Login",
     logout: "[Auth] Logout",
     loginError: "[Auth] Login Error",
+    registerError: "[Auth] register Error",
     isValidToken:'[Auth] valid token',
     isDisabledBtn:'[Auth] Disabled for request active',
 

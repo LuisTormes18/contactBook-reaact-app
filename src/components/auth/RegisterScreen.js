@@ -4,7 +4,7 @@ import validator from "validator";
 
 import useForm from "./../../hooks/useForm";
 import authContext from "./../../context/auth/authContext";
-import { setErrorToNull, setError, startRegister } from "./../../actions/auth";
+import { setErrorRegister, startRegister } from "./../../actions/auth";
 
 function RegisterScreen() {
     const [authState, dispatch] = useContext(authContext);
@@ -26,28 +26,28 @@ function RegisterScreen() {
     }
     const isFormValid = () => {
         if (name.trim().length === 0) {
-            dispatch(setError("Name is required"));
+            dispatch(setErrorRegister("Name is required"));
             return false;
         } else if (!validator.isEmail(email)) {
-            dispatch(setError("Email Invalid"));
+            dispatch(setErrorRegister("Email Invalid"));
             return false;
         } else if (password !== password2) {
-            dispatch(setError("Passwords do not match"));
+            dispatch(setErrorRegister("Passwords do not match"));
 
             return false;
         } else if (password.length <= 5) {
-            dispatch(setError("the password must be at least 6 characters"));
+            dispatch(setErrorRegister("the password must be at least 6 characters"));
             return false;
         }
         return true;
     };
     useEffect(() => {
-        return async () => {
+        return () => {
             if (authState.msgEror !== null) {
-                await dispatch(setErrorToNull());
+               dispatch(setErrorRegister(null));
             }
         };
-    }, []);
+    }, [authState.msgEror,dispatch]);
 
     return (
         <div className="form-container">
@@ -103,9 +103,9 @@ function RegisterScreen() {
                     />
                 </div>
 
-                {authState.msgError && (
+                {authState.registerError && (
                     <div className="alert alert-danger" role="alert">
-                        {authState.msgError}
+                        {authState.registerError}
                     </div>
                 )}
                     <Link className="link" to="/auth/login">

@@ -4,15 +4,25 @@ import { types } from "./../types/types";
 export const startLoadAllContacts = async (dispatch) => {
     const resp = await fetchWithToken("/contacts/");
     const result = await resp.json();
-
+if(result.ok)
+{
     dispatch(loadData(result.listContacts));
+
+}
+else{
+    console.log(result)
+}
 };
 
 export const startAddNewContact = async (newContact, dispatch) => {
     const resp = await fetchWithToken("/contacts/add", newContact, "POST");
     const result = await resp.json();
-
+    if(result.ok){
     dispatch(refresh(newContact));
+
+}else{
+    console.log(result)
+}
 };
 
 export const loadData = (data) => {
@@ -32,8 +42,12 @@ export const refresh = (newContact) => {
 export const startDeleteContact = async (id, dispatch) => {
     const resp = await fetchWithToken(`/contacts/delete/${id}`, null, "DELETE");
     const result = await resp.json();
-
+if(result.ok){
     dispatch(contactDelete(id));
+
+}else{
+    console.log(result);
+}
 };
 export const contactDelete = (id) => {
     return {
@@ -56,7 +70,12 @@ export const startUpdateContact = async (newData, dispatch) => {
     );
     const result = await resp.json();
 
+    if(result.ok){
     dispatch(contactUpdate(newData));
+
+}else{
+    console.log(result)
+}
 };
 
 export const contactUpdate = (newData) => {

@@ -9,7 +9,6 @@ import {
 import bookContext from "./../../context/book/bookContext";
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
-import ButtonMovile from "./ButtonMovile";
 
 function HomeScreen() {
     const [bookState, dispatch] = useContext(bookContext);
@@ -25,6 +24,7 @@ function HomeScreen() {
     }, [dispatch]);
 
     function handleEdit(record) {
+
         dispatch(loadContactForEdit(record));
     }
     async function handleDelete(id) {
@@ -76,7 +76,7 @@ function HomeScreen() {
                                                 <td>{record.email}</td>
                                                 <td>{record.phone}</td>
                                                 <td>{record.direction}</td>
-                                                <td className="actions actions-btn">
+                                                <td className="actions">
                                                     <button
                                                         className="btn btn-outline-primary"
                                                         onClick={() => {

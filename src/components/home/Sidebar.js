@@ -19,7 +19,7 @@ function Sidebar() {
         if (bookState.active) {
             reset({ ...bookState.active });
         }
-    }, [bookState.active]);
+    }, []);
 
     const { fullname, email, phone, direction } = stateValues;
 
@@ -49,7 +49,7 @@ function Sidebar() {
         <div className="home__sidebar">
             <form >
                 <div className="form-group">
-                    <label>Nombre Completo</label>
+                    <label className="form-label">Nombre Completo</label>
                     <input
                         type="text"
                         name="fullname"
@@ -60,7 +60,7 @@ function Sidebar() {
                 </div>
 
                 <div className="form-group">
-                    <label>Email</label>
+                    <label className="form-label">Email</label>
                     <input
                         type="text"
                         name="email"
@@ -71,7 +71,7 @@ function Sidebar() {
                 </div>
 
                 <div className="form-group">
-                    <label>Telefono</label>
+                    <label className="form-label">Telefono</label>
                     <input
                         type="text"
                         name="phone"
@@ -82,7 +82,7 @@ function Sidebar() {
                 </div>
 
                 <div className="form-group">
-                    <label>Direccion</label>
+                    <label className="form-label">Direccion</label>
                     <input
                         type="text"
                         name="direction"
@@ -91,11 +91,13 @@ function Sidebar() {
                         onChange={handleInputChange}
                     />
                 </div>
-                {!bookState.active ? (
+              <div className="form-group">
+  {!bookState.active ? (
                     <button  className='btn btn-primary' onClick={handleCliackAdd}>Add New Contact</button>
                 ) : (
                     <button className='btn btn-primary'onClick={handleClickSaveEdit}>Save Edit</button>
                 )}
+              </div>
             </form>
         </div>
     );
