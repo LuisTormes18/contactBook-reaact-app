@@ -9,6 +9,11 @@
     padding: 0 10%;
 
     color: white;
+    .logo{
+    &::first-letter {
+    text-transform: uppercase;
+}
+    }
 }
 .home__sidebar {
     background-color: #f1f1f1;

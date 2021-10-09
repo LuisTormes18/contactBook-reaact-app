@@ -19,7 +19,7 @@ function Sidebar() {
         if (bookState.active) {
             reset({ ...bookState.active });
         }
-    }, []);
+    }, [bookState.active]);
 
     const { fullname, email, phone, direction } = stateValues;
 
