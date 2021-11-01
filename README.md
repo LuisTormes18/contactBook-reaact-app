@@ -21,7 +21,7 @@ If you want to see the demo of this project deployed, you can visit [Demo of the
 
 * [React](https://es.reactjs.org/) - The web framework used
 * [Sass](https://sass-lang.com/) - Sass is a stylesheet language that’s compiled to CSS
-* [Bootstrap 5]https://getbootstrap.com/) - it's a css framework for styles
+* [Bootstrap 5](https://getbootstrap.com/) - it's a css framework for styles
 * [Sweetalert2](https://sweetalert2.github.io/) - A beautiful, responsive,customizable and Accessible for javaScript pop-up boxes
 
 
