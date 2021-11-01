@@ -1,8 +1,7 @@
-# Drink Finder
+# Contact Book
 
-This project is a beverage finder, made with react and the api of
-** thecocktaildb **,
-the state of the application is managed with ContexApi.
+This project is an agenda to save all the contacts of a user, it connects to an api made in node for the authentication and registration of the contacts.
+
 
 ## Preview
 Insert here an image of the preview if your project has one. The image can be into the project, you have to indicate the route and look like this.
